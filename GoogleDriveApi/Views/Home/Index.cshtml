@@ -37,10 +37,13 @@
                     }
                 }
             },
-            pageSize:10,
-            height: 550,
+            serverFiltering: true,
             groupable: true,
             sortable: true,
+            height: 480,
+            filterable: {
+                mode: "row"
+            },
             pageable: {
                 refresh: true,
                 pageSizes: true,
@@ -48,8 +51,7 @@
             },
             columns: [{
                 field: "Id",
-                title: "File Id",
-                width: 350
+                title: "File Id"
             }, {
                 field: "Name",
                 title: "File Name"
