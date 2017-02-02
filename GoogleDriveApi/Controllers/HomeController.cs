@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Drive.v3;
+using Google.Apis.Drive.v3.Data;
 using Google.Apis.Services;
 using MemoryCache;
 
@@ -24,11 +25,15 @@ namespace GoogleDriveApi.Controllers
                 HttpClientInitializer = result.Credential,
                 ApplicationName = "ASP.NET MVC Sample"
             });
-            var list = service.Files.List().Execute();
-                
-            Cache.Store("files", list);
+            
 
-            return View(list);
+            if (!Cache.Exists("files"))
+            {
+               var list = service.Files.List().Execute();
+                Cache.Store("files", list);
+            }
+            
+            return View();
         }
     }
 }

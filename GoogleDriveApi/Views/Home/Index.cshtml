@@ -10,6 +10,50 @@
         <div id="grid"></div>
     </section>
 </div>
-@section scripts {
-    <script src="~/Scripts/odataGrid.js"></script>
-}
+
+<script>
+    $(document).ready(function () {
+        $("#grid").kendoGrid({
+            dataSource: {
+                type: "odata",
+                transport: {
+                    read: {
+                        url: "/api/Files",
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: function (data) {
+                        return data["value"];
+                    },
+                    total: function (data) {
+                        return data["odata.count"];
+                    },
+                    model: {
+                        fields: {
+                            Id: { type: "string" },
+                            Name: { type: "string" }
+                        }
+                    }
+                }
+            },
+            pageSize:10,
+            height: 550,
+            groupable: true,
+            sortable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+            columns: [{
+                field: "Id",
+                title: "File Id",
+                width: 350
+            }, {
+                field: "Name",
+                title: "File Name"
+            }]
+        });
+    });
+</script>

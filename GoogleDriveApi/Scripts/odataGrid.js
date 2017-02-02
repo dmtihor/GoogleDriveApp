@@ -16,7 +16,7 @@
             },
             model: {
                 fields: {
-                    Id: { type: "string" },
+                    Id: { type: "number" },
                     Name: { type: "string" }
                 }
             }
@@ -35,6 +35,7 @@
         columns: [
             { field: "Id" },
             { field: "Name" }
+           
         ]
     });
 });

@@ -33,11 +33,7 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    
-                    <li>@Html.ActionLink("Home", "FilesResult", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                <ul class="nav navbar-nav"></ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -50,7 +46,7 @@
         </footer>
     </div>
 
-   
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
