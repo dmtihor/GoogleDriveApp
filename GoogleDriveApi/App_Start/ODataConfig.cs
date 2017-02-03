@@ -14,6 +14,7 @@ namespace GoogleDriveApi
 
             var builder = new ODataConventionModelBuilder();
             builder.EntitySet<FileInf>("Files");
+            builder.EntitySet<FbUser>("Friends");
             config.MapODataServiceRoute("ODataRoute", "api", builder.GetEdmModel());
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using Google.Apis.Drive.v3;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -7,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using GoogleDriveApi.Models;
+using Microsoft.Owin.Security.Facebook;
 
 namespace GoogleDriveApi
 {
@@ -54,18 +54,16 @@ namespace GoogleDriveApi
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            
+            app.UseFacebookAuthentication(
+               appId: "1346307442059479",
+               appSecret: "59e8576539125ca1d3f511738a545226");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
                 ClientId = "402919559397-qscb28uej788e1m266pskokhe5up735v.apps.googleusercontent.com",
                 ClientSecret = "C8yL3ol6DZcK7plyeHyJX6RZ",
-                Provider = new GoogleOAuth2AuthenticationProvider(),
-                //CallbackPath = new PathString("/Account/ExternalLoginCallback")
-                // Scope = { DriveService.Scope.Drive }
+                Provider = new GoogleOAuth2AuthenticationProvider()
             });
         }
     }

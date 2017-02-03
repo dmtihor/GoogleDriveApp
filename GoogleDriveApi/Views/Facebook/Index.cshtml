@@ -1,0 +1,61 @@
+﻿<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Facebook Friends</h1>
+            </hgroup>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <div id="grid2"></div>
+    </section>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#grid2").kendoGrid({
+            dataSource: {
+                type: "odata",
+                transport: {
+                    read: {
+                        url: "/api/Friends",
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: function (data) {
+                        return data["value"];
+                    },
+                    total: function (data) {
+                        return data["odata.count"];
+                    },
+                    model: {
+                        fields: {
+                            Id: { type: "string" },
+                            Name: { type: "string" }
+                        }
+                    }
+                }
+            },
+            serverFiltering: true,
+            groupable: true,
+            sortable: true,
+            height: 480,
+            filterable: {
+                mode: "row"
+            },
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+            columns: [{
+                field: "Id",
+                title: "Friend Id"
+            }, {
+                field: "Name",
+                title: "Friend Name"
+            }]
+        });
+    });
+</script>
